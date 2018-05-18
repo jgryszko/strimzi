@@ -71,6 +71,11 @@ public final class Utils {
         if (token.contains("Illegal unquoted character")) {
             return "JSON quotation";
         }
+        if (token.contains("Failed to decode: Unexpected character ")) {
+            token = token.replace("Failed to decode: Unexpected character ('", "");
+            token = token.substring(0, token.indexOf("'"));
+            return "Unexpected character - " + token;
+        }
         if (token.contains("Failed to decode: Unexpected end-of-input")) {
             return "JSON braces";
         }
